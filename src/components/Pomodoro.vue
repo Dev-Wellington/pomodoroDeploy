@@ -5,6 +5,7 @@ const timer = ref("25:00");
 const timerBreak = ref("5:00");
 const startStop = ref("Start");
 let intervalId;
+let isBreakTime = false;
 
 const startTimerStopTimer = () => {
   if (startStop.value === "Start") {
@@ -25,8 +26,12 @@ const startTimer = () => {
 
     if (totalTime <= 0) {
       clearInterval(intervalId);
-      timer.value = timerBreak.value;
-
+      if (isBreakTime) {
+        timer.value = "25:00";
+      } else {
+        timer.value = timerBreak.value;
+      }
+      isBreakTime = !isBreakTime;
       startTimerStopTimer();
       return;
     }
