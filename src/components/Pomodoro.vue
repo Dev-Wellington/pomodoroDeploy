@@ -2,8 +2,10 @@
 import { ref } from "vue";
 
 const timer = ref("25:00");
-const timerBreak = ref("5:00");
+const timerBreak = ref("05:00");
+const longTimerBreak = ref("15:00");
 const startStop = ref("Start");
+const countBreak = ref(0);
 let intervalId;
 let isBreakTime = false;
 
@@ -30,18 +32,28 @@ const startTimer = () => {
         timer.value = "25:00";
       } else {
         timer.value = timerBreak.value;
+        countBreak.value++;
+
+        //quando as duas pausas de cinco minutos forem ativados , o longTimerBreak será ativado
+        if (countBreak.value === 2) {
+        timer.value = longTimerBreak.value;
+        countBreak.value = 0;
+        //console.log("long break está funcionando!");
+      }
+      
       }
       isBreakTime = !isBreakTime;
       startTimerStopTimer();
       return;
     }
-
+    
     const newMinutes = Math.floor(totalTime / 60);
     const newSeconds = totalTime % 60;
     timer.value = `${String(newMinutes).padStart(2, "0")}:${String(
       newSeconds
-    ).padStart(2, "0")}`;
-  }, 1000);
+      ).padStart(2, "0")}`;
+    }, 1000);
+
 };
 
 const stopTimer = () => {
