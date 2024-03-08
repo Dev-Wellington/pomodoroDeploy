@@ -36,24 +36,22 @@ const startTimer = () => {
 
         //quando as duas pausas de cinco minutos forem ativados , o longTimerBreak será ativado
         if (countBreak.value === 2) {
-        timer.value = longTimerBreak.value;
-        countBreak.value = 0;
-        //console.log("long break está funcionando!");
-      }
-      
+          timer.value = longTimerBreak.value;
+          countBreak.value = 0;
+          //console.log("long break está funcionando!");
+        }
       }
       isBreakTime = !isBreakTime;
       startTimerStopTimer();
       return;
     }
-    
+
     const newMinutes = Math.floor(totalTime / 60);
     const newSeconds = totalTime % 60;
     timer.value = `${String(newMinutes).padStart(2, "0")}:${String(
       newSeconds
-      ).padStart(2, "0")}`;
-    }, 1000);
-
+    ).padStart(2, "0")}`;
+  }, 1000);
 };
 
 const stopTimer = () => {
@@ -65,7 +63,6 @@ const resetTimer = () => {
   stopTimer();
   startStop.value = "Start";
 };
-
 </script>
 
 <template>
@@ -81,14 +78,16 @@ const resetTimer = () => {
           alt="imagem de uma seta circular com a ponta para a esquerda"
         />
       </button>
+     
     </div>
   </div>
 </template>
 
 <style scoped>
-.timer-pomodoro {
-  width: 100%;
-  height: 80dvh;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 .timer-pomodoro {
   color: #0f1729;
@@ -106,7 +105,6 @@ h2 {
   display: flex;
   width: 270px;
   justify-content: space-between;
-  
 }
 .timer-button {
   height: 64px;
@@ -122,7 +120,7 @@ h2 {
   background-color: #e6e6e6;
 }
 .timer-button:active {
-  background-color: #f2f2f2
+  background-color: #f2f2f2;
 }
 .timer-button {
   font-size: 18px;
@@ -134,9 +132,9 @@ h2 {
   cursor: pointer;
 }
 .reload-button:hover {
-filter: drop-shadow(0 0 5px #0f1729);
+  filter: drop-shadow(0 0 5px #0f1729);
 }
 .reload-button:active {
   filter: drop-shadow(0 0 5px #e6e6e6);
-} 
+}
 </style>

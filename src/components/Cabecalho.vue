@@ -1,9 +1,10 @@
-<script></script>
+<script setup>
+</script>
 
 <template>
   <header>
-    <img src="../assets/logo.svg" alt="Imagem ilustrativa de um relógio" />
     <h1>Pomodoro</h1>
+    <img src="../assets/logo.svg" alt="Imagem ilustrativa de um relógio" />
   </header>
 </template>
 
@@ -13,7 +14,7 @@ header {
   justify-content: center;
   align-items: center;
   gap: 10px;
-  flex-direction: row-reverse;
+  flex-direction: row;
 }
 
 h1 {
@@ -24,4 +25,5 @@ img{
   height: 32px;
   width: 32px;
 }
+
 </style>
