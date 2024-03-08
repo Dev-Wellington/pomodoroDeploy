@@ -82,9 +82,14 @@ const showPomoTask = () => {
   align-items: center;
   gap: 10px;
 }
+h2{
+  font-size: 25px;
+  color: #0f1729;
+
+}
 .add-task {
- 
-  width: 270px;
+ width:290px;
+  
   height: 64px;
   display: flex;
   justify-content: space-between;
@@ -98,10 +103,18 @@ const showPomoTask = () => {
   word-break: break-all;
 }
 .task {
+  color:#0f1729;
+  font-weight: 400;
   background-color: #f0f0f0;
-  padding: 10px;
+  padding:  10px 10px;
   width: 270px;
   height: 64px;
+}
+.task-p{
+  font-size: 18px;
+  font-weight: 600;
+  padding-left: 15px;
+
 }
 .task {
   border-radius: 10px;
@@ -109,6 +122,7 @@ const showPomoTask = () => {
 
 
 .btn-show-task {
+  font-weight: bold;
   background-color: #0f1729;
   color: white;
   border: none;
@@ -117,7 +131,8 @@ const showPomoTask = () => {
   cursor: pointer;
 }
 .btn-add-task {
-  
+  height: 100%;
+  padding: 0 20px;
   background-color: #0f1729;
   color: white;
   border: none;
@@ -135,20 +150,30 @@ const showPomoTask = () => {
 .btn-add-task:disabled {
   background-color: #f0f0f0;
   color: #0f1729;
+  font-weight: 700;
   cursor: not-allowed;
 }
 .input-task {
+  padding:0;
+  
+  border: 0.5px solid #0f1729;
+font-weight: 700;
+font-size:16px;
+  /*padding: 5px 10px;*/
+  height: 64px;
   background-color: #f0f0f0;
-
-  border-radius: 5px;
+border-radius: 10px;
+padding-left: 20px;
 }
-
+.input-task{
+  outline-color: red;
+}
 /*continuar estilizaçao do input e botao*/
 .input-task:focus {
   outline: none;
 }
 .input-task::placeholder {
-  
+  padding:10px 5px;
   color: #0f1729;
 }
 .btn-remove {
@@ -160,6 +185,10 @@ const showPomoTask = () => {
 @media (max-width: 600px) {
   .task{
     min-width: 240px;
+  }
+  .input-task{
+    width: 180px;
+  
   }
 }
 
