@@ -12,6 +12,7 @@ import Task from "./components/tasks/Task.vue";
   <main>
     <Pomodoro></Pomodoro>
     <Task></Task>
+    
   </main>
   
 </template>

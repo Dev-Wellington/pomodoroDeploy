@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <header>
+  <header >
     <h1>Pomodoro</h1>
     <img src="../assets/logo.svg" alt="Imagem ilustrativa de um relógio" />
   </header>
@@ -25,5 +25,30 @@ img{
   height: 32px;
   width: 32px;
 }
+
+@media (min-width: 320px) {
+  h1 {
+    font-size: 48px;
+  }
+
+  img {
+    height: 48px;
+    width: 48px;
+  }
+  
+}
+
+@media (min-width: 767px) {
+  h1 {
+    font-size: 64px;
+  }
+
+  img {
+    height: 64px;
+    width: 64px;
+  }
+}
+
+
 
 </style>

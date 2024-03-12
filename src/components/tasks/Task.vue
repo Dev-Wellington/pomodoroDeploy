@@ -3,7 +3,6 @@
     <div class="show-task">
       <h2>Add Tasks</h2>
       <button @click="showPomoTask" class="btn-show-task">Add Task</button>
-
     </div>
     <div v-show="showPomoModal" class="add-task">
       <input
@@ -17,14 +16,13 @@
         Add
       </button>
     </div>
-    
-      <div v-for="(task, index) in tasks" :key="index" class="task">
-        <p class="task-p">{{ task }}</p>
-        <button @click="removeTask(index)" class="btn-remove">
-          <img src="../../assets/remove.svg" alt="Remove Task" />
-        </button>
-      </div>
-   
+
+    <div v-for="(task, index) in tasks" :key="index" class="task">
+      <p class="task-p">{{ task }}</p>
+      <button @click="removeTask(index)" class="btn-remove">
+        <img src="../../assets/remove.svg" alt="Remove Task" />
+      </button>
+    </div>
   </div>
 </template>
 
@@ -75,26 +73,24 @@ const showPomoTask = () => {
 <style scoped>
 .task-container {
   font-family: sans-serif;
- width: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 10px;
 }
-h2{
+h2 {
   font-size: 25px;
   color: #0f1729;
-
 }
 .add-task {
- width:290px;
-  
+  width: 420px;
+
   height: 64px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
 }
 .task {
   display: flex;
@@ -103,25 +99,24 @@ h2{
   word-break: break-all;
 }
 .task {
-  color:#0f1729;
+  color: #0f1729;
   font-weight: 400;
   background-color: #f0f0f0;
-  padding:  10px 10px;
-  width: 270px;
+  padding: 10px 10px;
+  width: 400px;
   height: 64px;
 }
-.task-p{
+.task-p {
   font-size: 18px;
   font-weight: 600;
   padding-left: 15px;
-
 }
 .task {
   border-radius: 10px;
 }
 
-
 .btn-show-task {
+  
   font-weight: bold;
   background-color: #0f1729;
   color: white;
@@ -137,15 +132,14 @@ h2{
   color: white;
   border: none;
   cursor: pointer;
-  
+
   border-radius: 5px;
 }
-.show-task{
-  width:270px;
+.show-task {
+  width: 400px;
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: center;
-  
 }
 .btn-add-task:disabled {
   background-color: #f0f0f0;
@@ -154,18 +148,18 @@ h2{
   cursor: not-allowed;
 }
 .input-task {
-  padding:0;
-  
+  padding: 0;
+
   border: 0.5px solid #0f1729;
-font-weight: 700;
-font-size:16px;
+  font-weight: 700;
+  font-size: 16px;
   /*padding: 5px 10px;*/
   height: 64px;
   background-color: #f0f0f0;
-border-radius: 10px;
-padding-left: 20px;
+  border-radius: 10px;
+  padding-left: 20px;
 }
-.input-task{
+.input-task {
   outline-color: red;
 }
 /*continuar estilizaçao do input e botao*/
@@ -173,7 +167,7 @@ padding-left: 20px;
   outline: none;
 }
 .input-task::placeholder {
-  padding:10px 5px;
+  padding: 10px 5px;
   color: #0f1729;
 }
 .btn-remove {
@@ -181,17 +175,43 @@ padding-left: 20px;
   border: none;
   cursor: pointer;
 }
+@media screen and (min-width: 767px) and (max-width: 1023px) {
 
-@media (max-width: 600px) {
-  .task{
-    min-width: 240px;
-  }
-  .input-task{
-    width: 180px;
-  
-  }
+h2 {
+  font-size: 30px;
+}
+.show-task {
+  width: 400px;
+}
+.btn-show-task{
+  padding: 10px 30px;
+}
+.task {
+  width: 380px;
+}
+.add-task{
+  width: 400px;
+
+}
 }
 
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .task {
+    width: 300px;
+  }
+  .input-task {
+    width: 180px;
+  }
+  
+.show-task {
+  width: 300px;
+}
+
+.add-task{
+  width: 320px;
+
+}
+}
 
 @keyframes abrir {
   0% {
@@ -207,4 +227,3 @@ padding-left: 20px;
   }
 }
 </style>
-

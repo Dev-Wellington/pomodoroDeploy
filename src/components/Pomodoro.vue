@@ -1,14 +1,25 @@
 <script setup>
 import { ref } from "vue";
+import alert from '.././assets/alert.mp3';
 
 const timer = ref("25:00");
 const timerBreak = ref("05:00");
 const longTimerBreak = ref("15:00");
 const startStop = ref("Start");
 const countBreak = ref(0);
+
 let intervalId;
 let isBreakTime = false;
 
+const playAlert = () => {
+  let audio = new Audio(alert);
+
+  for (let i = 0; i < 3; i++) {
+    setTimeout(() => {
+      audio.play();
+    }, i * 1000);
+  }
+}
 const startTimerStopTimer = () => {
   if (startStop.value === "Start") {
     startTimer();
@@ -27,6 +38,7 @@ const startTimer = () => {
     totalTime--;
 
     if (totalTime <= 0) {
+      playAlert();
       clearInterval(intervalId);
       if (isBreakTime) {
         timer.value = "25:00";
@@ -98,12 +110,13 @@ const resetTimer = () => {
   font-size: 72px;
 }
 h2 {
+  font-size: 128px;
   margin: 0;
   font-family: sans-serif;
 }
 .buttons {
   display: flex;
-  width: 270px;
+ width: 300px;
   justify-content: space-between;
 }
 .timer-button {
@@ -136,5 +149,29 @@ h2 {
 }
 .reload-button:active {
   filter: drop-shadow(0 0 5px #e6e6e6);
+}
+
+@media screen and (min-width: 767px) and (max-width: 1023px) {
+  h2{
+    font-size: 160px;
+    
+  }
+  .buttons {
+    width: 400px;
+  }
+  .timer-button {
+    height: 100px;
+    width: 200px;
+    font-size: 32px;
+  }
+}
+@media screen and (min-width: 320px) and (max-width: 766px) {
+  h2{
+    font-size: 120px;
+
+  }
+  .buttons {
+    width: 300px;
+  }
 }
 </style>
