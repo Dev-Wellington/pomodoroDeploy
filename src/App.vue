@@ -1,19 +1,23 @@
+
 <script setup>
 import Pomodoro from "./components/Pomodoro.vue";
 import Cabecalho from "./components/Cabecalho.vue";
 import Task from "./components/tasks/Task.vue";
-
+import Loading from "./components/Loading.vue";
 </script>
 
 <template>
-  <header>
-    <Cabecalho></Cabecalho>
-  </header>
-  <main>
-    <Pomodoro></Pomodoro>
-    <Task></Task>
-    
-  </main>
+  <Loading>
+    <template #content>
+      <header>
+        <Cabecalho></Cabecalho>
+      </header>
+      <main>
+        <Pomodoro></Pomodoro>
+        <Task></Task>
+      </main>
+    </template>
+  </Loading>
   
 </template>
 
@@ -29,4 +33,5 @@ main{
   justify-content: space-around;
   gap:20px;
 }
+
 </style>

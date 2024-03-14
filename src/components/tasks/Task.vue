@@ -45,10 +45,16 @@ onMounted(() => {
 
 const addTask = () => {
   if (inputTask.value.trim() !== "") {
-    tasks.value.push(inputTask.value);
-    inputTask.value = "";
-    addTaskLocalStorage();
-    showPomoModal.value = false; // Close the modal after adding task
+    const taskExists = tasks.value.some(task => task === inputTask.value);
+    if (taskExists) {
+     
+      alert("Você já adicionou essa tarefa");
+    } else {
+      tasks.value.push(inputTask.value);
+      inputTask.value = "";
+      addTaskLocalStorage();
+      showPomoModal.value = false; 
+    }
   }
 };
 
@@ -162,7 +168,7 @@ h2 {
 .input-task {
   outline-color: red;
 }
-/*continuar estilizaçao do input e botao*/
+
 .input-task:focus {
   outline: none;
 }
