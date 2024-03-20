@@ -4,18 +4,21 @@
       <h2>Add Tasks</h2>
       <button @click="showPomoTask" class="btn-show-task">Add Task</button>
     </div>
-    <div v-show="showPomoModal" class="add-task">
-      <input
-        type="text"
-        placeholder="Add a task"
-        class="input-task"
-        v-model.trim="inputTask"
-        @keyup.enter="addTask"
-      />
-      <button :disabled="!inputTask" @click="addTask" class="btn-add-task">
-        Add
-      </button>
-    </div>
+    <transition name="modal">
+      <div v-show="showPomoModal" class="add-task" >
+        <input
+          type="text"
+          placeholder="Add a task"
+          name="task"
+          class="input-task"
+          v-model.trim="inputTask"
+          @keyup.enter="addTask"
+        />
+        <button :disabled="!inputTask" @click="addTask" class="btn-add-task">
+          Add
+        </button>
+      </div>
+    </transition>
 
     <div v-for="(task, index) in tasks" :key="index" class="task">
       <p class="task-p">{{ task }}</p>
@@ -30,7 +33,7 @@
 import { ref, onMounted } from "vue";
 
 const inputTask = ref("");
-const tasks = ref([]); //
+const tasks = ref([]); 
 
 const showTaskLocalStorage = () => {
   const storedTasks = localStorage.getItem("tasks");
@@ -44,18 +47,33 @@ onMounted(() => {
 });
 
 const addTask = () => {
-  if (inputTask.value.trim() !== "") {
-    const taskExists = tasks.value.some(task => task === inputTask.value);
-    if (taskExists) {
-     
-      alert("Você já adicionou essa tarefa");
-    } else {
-      tasks.value.push(inputTask.value);
-      inputTask.value = "";
-      addTaskLocalStorage();
-      showPomoModal.value = false; 
-    }
+  const trimmedInput = inputTask.value.trim();
+
+  if (!trimmedInput) {
+    return;
   }
+
+  const taskExists = tasks.value.some(
+    (task) => task.toLowerCase() === trimmedInput.toLowerCase()
+  );
+
+  if (taskExists) {
+    alert("You have already added this task");
+    return;
+  }
+
+  if (tasks.value.length >= 10) {
+    alert("You have reached the task limit");
+    return;
+  }
+
+  tasks.value.push(trimmedInput);
+
+  inputTask.value = "";
+
+  addTaskLocalStorage();
+
+  showPomoModal.value = false;
 };
 
 const removeTask = (index) => {
@@ -68,12 +86,12 @@ const addTaskLocalStorage = () => {
 };
 
 const showPomoModal = ref(false);
+  const showPomoTask = () => {
+    showPomoModal.value = !showPomoModal.value;
+    
+   
+  };
 
-const showPomoTask = () => {
-  showPomoModal.value = !showPomoModal.value;
-};
-
-//quando clicado mostrar o componente Task, o component task é um input para adicionar tarefas, apos adcionar a task ela aparece no componente Pomodoro em ordem da mais recente para a mais antiga
 </script>
 
 <style scoped>
@@ -122,7 +140,6 @@ h2 {
 }
 
 .btn-show-task {
-  
   font-weight: bold;
   background-color: #0f1729;
   color: white;
@@ -159,7 +176,6 @@ h2 {
   border: 0.5px solid #0f1729;
   font-weight: 700;
   font-size: 16px;
-  /*padding: 5px 10px;*/
   height: 64px;
   background-color: #f0f0f0;
   border-radius: 10px;
@@ -182,23 +198,21 @@ h2 {
   cursor: pointer;
 }
 @media screen and (min-width: 767px) and (max-width: 1023px) {
-
-h2 {
-  font-size: 30px;
-}
-.show-task {
-  width: 400px;
-}
-.btn-show-task{
-  padding: 10px 30px;
-}
-.task {
-  width: 380px;
-}
-.add-task{
-  width: 400px;
-
-}
+  h2 {
+    font-size: 30px;
+  }
+  .show-task {
+    width: 400px;
+  }
+  .btn-show-task {
+    padding: 10px 30px;
+  }
+  .task {
+    width: 380px;
+  }
+  .add-task {
+    width: 400px;
+  }
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
@@ -208,28 +222,48 @@ h2 {
   .input-task {
     width: 180px;
   }
-  
-.show-task {
-  width: 300px;
-}
 
-.add-task{
-  width: 320px;
+  .show-task {
+    width: 300px;
+  }
 
+  .add-task {
+    width: 320px;
+  }
 }
+.modal-enter-active{
+ animation: openM 0.5s;
 }
-
-@keyframes abrir {
+.modal-leave-active{
+  animation: leaveM 0.5s;
+}
+.modal-enter,
+.modal-leave-to {
+  opacity: 0;
+}
+@keyframes openM {
   0% {
     opacity: 0;
     transform: scale(0.5);
-    background-color: red;
   }
   50% {
     opacity: 1;
   }
   100% {
     transform: scale(1);
+  }}
+@keyframes leaveM {
+  0% {
+    opacity: 1;
+    transform: scale(1);
   }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    transform: scale(0.5);
+  }
+  
 }
+
 </style>

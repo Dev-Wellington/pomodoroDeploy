@@ -46,11 +46,11 @@ const startTimer = () => {
         timer.value = timerBreak.value;
         countBreak.value++;
 
-        //quando as duas pausas de cinco minutos forem ativados , o longTimerBreak será ativado
+       
         if (countBreak.value === 2) {
           timer.value = longTimerBreak.value;
           countBreak.value = 0;
-          //console.log("long break está funcionando!");
+  
         }
       }
       isBreakTime = !isBreakTime;
@@ -174,4 +174,5 @@ h2 {
     width: 300px;
   }
 }
+
 </style>
