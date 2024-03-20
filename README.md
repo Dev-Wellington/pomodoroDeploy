@@ -2,9 +2,11 @@
 
 O pomodoro é uma técnica que utiliza de loops de 25 minutos e intervalos de 5 minutos, para foco e estudo.
 
-<video width="1280" height="720" controls>
-<source src="/Pomodoro/src/assets/img_projeto/202403201246.mp4" type="video/mp4">
-</video>
+
+
+
+https://github.com/Dev-Wellington/pomodoroDeploy/assets/118689748/ac62d3f7-f9bb-4061-b946-3a41a52f43e5
+
 
 ## Instalação e configuração
 
